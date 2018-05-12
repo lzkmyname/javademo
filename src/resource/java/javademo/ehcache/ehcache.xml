@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xmlns='http://www.ehcache.org/v3'
+    xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core.xsd">
+
+  <cache alias="foo"> 
+    <key-type>java.lang.String</key-type> 
+    <value-type>java.lang.String</value-type> 
+    <resources>
+    	<!-- 缓存kv数 -->
+      <heap unit="entries">2000</heap> 
+      <!-- 内存大小 -->
+      <offheap unit="MB">500</offheap> 
+    </resources>
+  </cache>
+	<!-- 缓存模板 -->
+  <cache-template name="myDefaults"> 
+    <key-type>java.lang.Long</key-type>
+    <value-type>java.lang.String</value-type>
+    <heap unit="entries">200</heap>
+  </cache-template>
+  <!-- 基于缓存模板的cache对象 -->
+  <cache alias="bar" uses-template="myDefaults"> 
+    <key-type>java.lang.Number</key-type>
+  </cache>
+
+  <cache alias="simpleCache" uses-template="myDefaults" /> 
+
+</config>
